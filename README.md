@@ -12,6 +12,7 @@ pip install -r requirements.txt
 Create a .env file:
 
 GROQ_API_KEY=your_groq_api_key
+
 SERP_API_KEY=your_serpapi_key
 
 ## Run the App
