@@ -16,7 +16,7 @@
 
 # @app.route("/", methods=["GET"])
 # def home():
-#     return {"message": "🧠 Cancer Assistant is running with Flask!"}
+#     return {"message": " Cancer Assistant is running with Flask!"}
 
 # @app.route("/chat", methods=["POST"])
 # def chat():
@@ -86,7 +86,7 @@ os.makedirs("chat_memory", exist_ok=True)
 
 @app.route("/", methods=["GET"])
 def home():
-    return {"message": "🧠 Cancer Assistant is running with Flask!"}
+    return {"message": "Cancer Assistant is running with Flask!"}
 
 @app.route("/chat", methods=["POST"])
 def chat():
