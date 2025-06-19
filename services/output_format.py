@@ -5,6 +5,7 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.documents import Document
 from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.tools import tool
 
 load_dotenv()
 
@@ -26,16 +27,29 @@ prompt = ChatPromptTemplate.from_template(
 
 chain = create_stuff_documents_chain(llm, prompt)
 
-def make_json_with_links(result: dict) -> dict:
+@tool
+def format_result_tool(result_json: str) -> dict:
+    """
+    Formats a single web search result (title, snippet, link) into structured JSON.
+    Input must be a JSON string.
+    """
     try:
-        text = f"Title: {result['title']}\nSnippet: {result['snippet']}\nLink: {result['link']}"
+        result = json.loads(result_json)
+        text = (
+            f"Title: {result['title']}\n"
+            f"Snippet: {result['snippet']}\n"
+            f"Link: {result['link']}\n\n"
+            f"Link: {result['Symptoms']}\n\n"
+            f"Link: {result['Treatment']}\n\n"
+            f"Link: {result['Diagnosis']}\n\n"
+        )
         docs = [Document(page_content=text)]
         raw = chain.invoke({"context": docs})
 
         start = raw.find("{")
         end = raw.rfind("}") + 1
         parsed = json.loads(raw[start:end])
-
         return {k: v for k, v in parsed.items() if isinstance(v, list) and v}
     except Exception as e:
         return {"error": "Failed to format JSON", "details": str(e)}
+

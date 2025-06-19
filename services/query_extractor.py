@@ -1,3 +1,4 @@
+from langchain.tools import tool
 import os
 from groq import Groq
 from dotenv import load_dotenv
@@ -5,7 +6,9 @@ from dotenv import load_dotenv
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
+@tool
 def validate_cancer_query(user_input: str) -> str:
+    """Check if the message is about cancer. Returns the original query if valid, else a message."""
     prompt = (
         "You are a strict medical classifier.\n"
         "Check if the user's message is clearly related to cancer (like symptoms, treatment, diagnosis, prevention, types, etc).\n"
@@ -22,3 +25,6 @@ def validate_cancer_query(user_input: str) -> str:
     )
     result = response.choices[0].message.content.strip().lower()
     return user_input if result == "cancer" else "Sorry, I can only help with cancer-related medical questions."
+
+# result = validate_cancer_query("what is cancer")
+# print(result)

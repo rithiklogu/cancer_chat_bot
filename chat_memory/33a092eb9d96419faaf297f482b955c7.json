@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-06-19T23:12:06.490906",
+  "user_input": "canser type",
+  "validated_query": "canser type",
+  "search_result": {
+    "title": "A to Z List of Cancer Types",
+    "snippet": "Cancer Types \u00b7 Bladder Cancer \u00b7 Breast Cancer \u00b7 Colorectal Cancer \u00b7 Kidney (Renal Cell) Cancer \u00b7 Lung Cancer \u00b7 Lymphoma \u00b7 Pancreatic Cancer \u00b7 Prostate Cancer ...",
+    "link": "https://www.cancer.gov/types"
+  },
+  "formatted_output": {
+    "error": "Failed to format JSON",
+    "details": "'Symptoms'"
+  }
+}

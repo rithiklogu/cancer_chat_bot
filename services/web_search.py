@@ -1,10 +1,16 @@
 import os
 import requests
 from dotenv import load_dotenv
+from langchain.tools import tool
 
 load_dotenv()
 
-def search_web(query: str):
+@tool
+def search_web_tool(query: str) -> dict:
+    """
+    Searches the web for cancer-related content using SerpAPI.
+    Returns the top result with title, snippet, and link.
+    """
     if not isinstance(query, str) or not query.strip():
         raise ValueError("Query must be a non-empty string.")
 
@@ -28,3 +34,6 @@ def search_web(query: str):
         "snippet": top_result.get("snippet"),
         "link": top_result.get("link")
     }
+
+# result = search_web_tool("what is cancer")
+# print(result)

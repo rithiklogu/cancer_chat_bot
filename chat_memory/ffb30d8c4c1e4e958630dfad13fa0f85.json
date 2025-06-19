@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-06-19T23:10:26.450441",
+  "user_input": "breast cancer symptoms",
+  "validated_query": "breast cancer symptoms",
+  "search_result": {
+    "title": "Breast cancer - Symptoms and causes",
+    "snippet": "Breast and nipple changes can be a sign of breast cancer. Make an appointment with a healthcare professional if you notice any changes.",
+    "link": "https://www.mayoclinic.org/diseases-conditions/breast-cancer/symptoms-causes/syc-20352470"
+  },
+  "formatted_output": {
+    "error": "Failed to format JSON",
+    "details": "'Symptoms'"
+  }
+}
