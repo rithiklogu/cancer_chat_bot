@@ -1,6 +1,6 @@
 import os
 import requests
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -15,13 +15,16 @@ def search_web(query: str):
     }
 
     response = requests.get("https://serpapi.com/search", params=params)
-    
     if response.status_code != 200:
         raise Exception(f"Search API failed: {response.status_code} - {response.text}")
 
     results = response.json().get("organic_results", [])
+    if not results:
+        return {"error": "No results found."}
 
-    return [f"{res.get('title')} - {res.get('snippet')}" for res in results[:5]]
-
-
-
+    top_result = results[0]
+    return {
+        "title": top_result.get("title"),
+        "snippet": top_result.get("snippet"),
+        "link": top_result.get("link")
+    }
